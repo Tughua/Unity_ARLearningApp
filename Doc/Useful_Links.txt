@@ -1,2 +1,5 @@
 How to setup guthub and Unity
 https://www.youtube.com/watch?v=qpXxcvS-g3g&t=172s
+
+Working with Unity version control
+https://learn.unity.com/tutorial/set-up-plastic-scm-in-the-unity-editor?uv=2022.1&projectId=630e728fedbc2a33c08442cd#631f45a5edbc2a267945ebed

@@ -1,0 +1,43 @@
+//This is the first version of the code and it moves when I touch the screen and not just the object.
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ARObjectController : MonoBehaviour
+{
+    private Vector2 touchStartPos;
+    private Vector2 touchCurrentPos;
+    private bool isDragging = false;
+
+    void Update()
+    {
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchStartPos = touch.position;
+                isDragging = true;
+            }
+            else if (isDragging && touch.phase == TouchPhase.Moved)
+            {
+                touchCurrentPos = touch.position;
+
+                // Calculate the difference in touch position
+                Vector2 delta = touchCurrentPos - touchStartPos;
+
+                // Adjust the object's position based on the touch input
+                Vector3 moveDirection = new Vector3(delta.x, delta.y, 0);
+                transform.position += Camera.main.transform.TransformDirection(moveDirection) * 0.0001f; // Adjust sensitivity as needed
+
+                touchStartPos = touchCurrentPos;
+            }
+            else if (isDragging && touch.phase == TouchPhase.Ended)
+            {
+                isDragging = false;
+            }
+        }
+    }
+}
